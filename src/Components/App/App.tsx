@@ -1,13 +1,11 @@
 import { Component} from 'react';
 import  React  from 'react';
-import MonthSwitcher from '../month-switcher';
+import TableLayout from '../table-layout';
 
 
 const App =  () => {
     return (
-        <table>
-            <MonthSwitcher />
-        </table>
+        <TableLayout />
     );
 }
 
