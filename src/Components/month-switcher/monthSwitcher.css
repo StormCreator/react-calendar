@@ -1,23 +1,15 @@
-thead{
-    width: 100%;
-}
-
 .month-switcher{
     width: 100%;
-    border: 1px solid orange;
-}
-
-.month-switcher td{
     display: flex;
-    align-items: center;
     justify-content: center;
+    
 }
 
-.month-switcher td span{
+.month-switcher span{
     margin: 0px 15px;
 }
 
-.month-switcher td button{
+.month-switcher button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,11 +20,11 @@ thead{
     cursor: pointer;
 }
 
-.month-switcher td button:focus{
+.month-switcher button:focus{
     outline: none;
 }
 
-.month-switcher td button img{
+.month-switcher button img{
     width: 100%;
     height: 100%;
 }
