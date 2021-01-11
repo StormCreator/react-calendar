@@ -1,5 +1,5 @@
 import React from 'react';
-import { Day } from '../../Utils/Day';
+import { Day } from '../../utils/Day';
 import './calendarHead.css';
 import { format } from 'date-fns';
 

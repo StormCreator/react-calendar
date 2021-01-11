@@ -8,6 +8,7 @@ import TeamTable from '../team';
 import {getDaysInMonth, startOfMonth} from 'date-fns';
 import { add, format, setDate, isWeekend } from 'date-fns';
 import CalendarHead from "../calendar-head";
+import { Day } from '../../utils/Day';
 
 class TableLayout extends React.Component<any,TableState>{
     state:TableState={
@@ -70,16 +71,13 @@ class TableLayout extends React.Component<any,TableState>{
 
     render(){
         return(
-          <>
+            <>
             <MonthSwitcher 
                     dateChanger = {this.switchMonth}
                     monthName = {format(this.state.currentDate, 'MMMM')}
-              />
+            />
             <table>
-                <MonthSwitcher />
-                <CalendarHead 
-                        daysInMonth = {this.state.daysInMonth}
-                />
+                <CalendarHead daysInMonth={this.state.daysInMonth}/>
                 {
                     this.state.teams.map((team)=>{
 
@@ -102,9 +100,8 @@ class TableLayout extends React.Component<any,TableState>{
                     })
                 }
             </table>
-           </>
+            </>
         )
-          
-
+    }}
 
 export default TableLayout;

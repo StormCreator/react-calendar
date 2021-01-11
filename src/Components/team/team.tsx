@@ -1,5 +1,6 @@
 import { th } from "date-fns/locale";
 import React from "react";
+import { Day } from "../../utils/Day";
 import { User } from "../../utils/user";
 import { Vacation } from "../../utils/vacation";
 
@@ -11,13 +12,13 @@ interface TeamProps{
     currentDate:Date;
     switchVisibility():void;
     vacations:Vacation[];
-    daysInMonth:number;
+    daysInMonth:Day[];
 }
 
 class TeamTable extends React.Component<TeamProps,any>{
     renderVacationsForUser(userId?:number):string[]{
         let arr=[];
-        for(let i=0;i<this.props.daysInMonth;i++){
+        for(let i=0;i<this.props.daysInMonth.length;i++){
             arr.push('');
         }
         return arr;
