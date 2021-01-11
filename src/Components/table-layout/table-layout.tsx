@@ -1,11 +1,13 @@
 import React from 'react';
 import { Component } from "react";
 import { TableState } from '../../utils/tableState';
+import './tableLayout.css';
 import { User } from '../../utils/user';
 import MonthSwitcher from '../month-switcher';
 import TeamTable from '../team';
 import {getDaysInMonth, startOfMonth} from 'date-fns';
-import TableHeader from '../table-head';
+import { add, format, setDate, isWeekend } from 'date-fns';
+import CalendarHead from "../calendar-head";
 
 class TableLayout extends React.Component<any,TableState>{
     state:TableState={
@@ -31,15 +33,53 @@ class TableLayout extends React.Component<any,TableState>{
             }
         ],
         vacations:[],
-        currentDate:startOfMonth(new Date()),
-        daysInMonth:getDaysInMonth(new Date())
+        currentDate:  new Date(),
+        daysInMonth: []
     };
+    
+    componentDidMount(){
+        this.switchMonth = this.switchMonth.bind(this);
+        this.setDaysInMonth = this.setDaysInMonth.bind(this);
+        this.setState({daysInMonth: this.setDaysInMonth(this.state.currentDate)});
+    }
+
+    protected switchMonth(e: Event, switchDirection: number): void{
+        let { currentDate, daysInMonth } = this.state;
+        const newDate: Date = add(currentDate , {  months: switchDirection });
+        daysInMonth = this.setDaysInMonth(newDate);
+        this.setState({
+            currentDate: newDate,
+            daysInMonth: daysInMonth
+        });
+    }
+
+
+    private setDaysInMonth(currentDate: Date): Day[]{
+        let daysArray: Day[] = [];
+        for(let i = 1; i <= getDaysInMonth(currentDate); i++){
+            let date: Date = setDate(currentDate, i);
+            let day: Day = {
+                date: date,
+                isWeekend: isWeekend(date),
+            }
+            daysArray.push(day);
+        }
+        return daysArray;
+    }
+
 
     render(){
         return(
+          <>
+            <MonthSwitcher 
+                    dateChanger = {this.switchMonth}
+                    monthName = {format(this.state.currentDate, 'MMMM')}
+              />
             <table>
                 <MonthSwitcher />
-                <TableHeader daysInMonth={this.state.daysInMonth} currentDate={this.state.currentDate}/>
+                <CalendarHead 
+                        daysInMonth = {this.state.daysInMonth}
+                />
                 {
                     this.state.teams.map((team)=>{
 
@@ -62,8 +102,9 @@ class TableLayout extends React.Component<any,TableState>{
                     })
                 }
             </table>
-        );
-    }
-}
+           </>
+        )
+          
+
 
 export default TableLayout;
