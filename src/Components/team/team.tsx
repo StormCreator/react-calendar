@@ -16,40 +16,34 @@ interface TeamProps{
 }
 
 class TeamTable extends React.Component<TeamProps,any>{
-    renderVacationsForUser(userId?:number):string[]{
-        let arr=[];
-        for(let i=0;i<this.props.daysInMonth.length;i++){
-            arr.push('');
-        }
-        return arr;
-    }
+    
     render(){
         return (<tbody>
-            <tr>
+            <tr key={'tr1'}>
                 <th>
                 {
                     this.props.name
                 }
                 </th>
                 {
-                    this.renderVacationsForUser().map((item)=>{
+                    this.props.daysInMonth.map((item)=>{
                         return(
-                            <td className={'daycell'}>
-                                {item}
+                            <td className={'daycell'} key={item.date.toString()}>
+                                {'dffsdfgsd'}
                             </td>
                         )
                     })
                 }
-            </tr>
+            </tr >
                 {
                     this.props.users.map((user)=>{
-                        return ( <tr>
-                            <th>{user.name}</th>
+                        return ( <tr key={user.id+'tr'}>
+                            <th key={user.id}>{user.name}</th>
                         {
-                            this.renderVacationsForUser(user.id).map((item)=>{
+                            this.props.daysInMonth.map((item)=>{
                                 return(
-                                    <td>
-                                        {item}
+                                    <td key={item.date.toString()}>
+                                        {'Hello'}
                                     </td>
                                 )
                             })
