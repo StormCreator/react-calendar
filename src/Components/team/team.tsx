@@ -1,15 +1,15 @@
-import { th } from "date-fns/locale";
 import React from "react";
 import { Day } from "../../utils/day";
 import { User } from "../../utils/user";
 import { Vacation } from "../../utils/vacation";
+import { TeamsColors } from "../../utils/teamColors";
 import './teamTable.css';
 
 interface TeamProps{
     key:number;
     name:string;
     users:User[];
-    currentDate:Date;
+    currentDate:Date; //зачем?
     vacations:Vacation[];
     daysInMonth:Day[];
 }
@@ -25,17 +25,17 @@ class TeamTable extends React.Component<TeamProps,any>{
         return (<tbody className={this.state.retracted?" retracted":''}>
             <tr key={'tr1'}>
                 <th>
-                {
-                    this.props.name
-                }
-                <span> users:{this.props.users.length}</span>
-                <button onClick={this.switchVisibility}>hide</button>
+                    {
+                        this.props.name
+                    }
+                    <span> users:{this.props.users.length}</span>
+                    <button onClick={this.switchVisibility}>hide</button>
                 </th>
                 {
                     this.props.daysInMonth.map((item)=>{
                         return(
                             <td className={`daycell ${item.isWeekend?'weekend':''}`} key={item.date.toString()}>
-                                {''}
+                                
                             </td>
                         )
                     })
