@@ -16,7 +16,7 @@ class TableLayout extends React.Component<any,TableState>{
         teams:[
             {
                 id:1,
-                name:'Front End team',
+                name:'Frontend team',
                 users:[
                     {
                         id:1,
@@ -34,7 +34,7 @@ class TableLayout extends React.Component<any,TableState>{
             },
             {
                 id:2,
-                name:'Back End team',
+                name:'Backend team',
                 users:[
                     {
                         id:3,
