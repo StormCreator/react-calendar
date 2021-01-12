@@ -9,6 +9,7 @@ td{
     width: 33px;
     box-sizing: border-box;
 }
+
 tbody:not(:first-of-type):before
 {
     content: '';
@@ -20,3 +21,40 @@ tbody:not(:first-of-type):before
     background-color: #f3f3f3;
 }
 
+
+.hide-arrow{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.hide-arrow:focus{
+    outline: none;
+}
+
+.team__title{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.team__title p {
+    padding: 0;
+    margin: 0;
+}
+
+.team__title-peoples{
+    display: flex;
+    align-items: center;
+}
+
+.team__title-peoples img{
+    margin-right: 5px;
+}
+
+.team__user{
+    text-align: left;
+    padding-left: 15px;
+}

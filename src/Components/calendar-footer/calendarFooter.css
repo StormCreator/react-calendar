@@ -1,0 +1,37 @@
+tfoot:before
+{
+    content: '';
+    display: block;
+    height: 40px;
+}
+
+tfoot tr:first-of-type{
+    background-color: #f3f3f3;
+}
+
+tfoot tr td p {
+    padding: 0;
+    margin: 0;
+}
+
+tfoot tr td:first-of-type{
+    border-left: 0;
+}
+
+tfoot tr td{
+    border-top: 0;
+    border-bottom: 0;
+}
+
+tfoot tr:not(:first-of-type) td{
+    border: 0;
+}
+
+.calendar__footer{
+    margin-top: 30px;
+}
+
+.calendar__footer-info{
+    display: flex;
+    justify-content: space-between;
+}

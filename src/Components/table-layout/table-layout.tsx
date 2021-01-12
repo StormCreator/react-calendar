@@ -5,6 +5,7 @@ import './tableLayout.css';
 import { User } from '../../utils/user';
 import MonthSwitcher from '../month-switcher';
 import TeamTable from '../team';
+import CalendarFooter from '../calendar-footer';
 import {getDaysInMonth, startOfMonth} from 'date-fns';
 import { add, format, setDate, isWeekend } from 'date-fns';
 import CalendarHead from "../calendar-head";
@@ -15,7 +16,7 @@ class TableLayout extends React.Component<any,TableState>{
         teams:[
             {
                 id:1,
-                name:'Front End team',
+                name:'Frontend team',
                 users:[
                     {
                         id:1,
@@ -33,7 +34,7 @@ class TableLayout extends React.Component<any,TableState>{
             },
             {
                 id:2,
-                name:'Back End team',
+                name:'Backend team',
                 users:[
                     {
                         id:3,
@@ -114,6 +115,10 @@ class TableLayout extends React.Component<any,TableState>{
                         )
                     })
                 }
+                <CalendarFooter 
+                    daysInMonth={this.state.daysInMonth}
+                    monthName = {format(this.state.currentDate, 'MMMM')}
+                />
             </table>
             </>
         )
