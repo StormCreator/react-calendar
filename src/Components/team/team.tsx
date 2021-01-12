@@ -40,6 +40,9 @@ class TeamTable extends React.Component<TeamProps,any>{
                         )
                     })
                 }
+                <td className="dayCell">
+
+                </td>
             </tr >
                 {
                     this.props.users.map((user)=>{
@@ -54,6 +57,9 @@ class TeamTable extends React.Component<TeamProps,any>{
                                 )
                             })
                         }
+                            <td className="dayCell">
+
+                            </td>
                         </tr>
                         )
                     })

@@ -9,13 +9,14 @@ td{
     width: 33px;
     box-sizing: border-box;
 }
-.weekend{
-    background: #F0F0F0;
-}
-tbody::before
+tbody:not(:first-of-type):before
 {
     content: '';
     display: block;
     height: 40px;
+}
+
+.dayCell:last-of-type{
+    background-color: #f3f3f3;
 }
 
