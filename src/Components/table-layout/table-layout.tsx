@@ -8,7 +8,7 @@ import TeamTable from '../team';
 import {getDaysInMonth, startOfMonth} from 'date-fns';
 import { add, format, setDate, isWeekend } from 'date-fns';
 import CalendarHead from "../calendar-head";
-import { Day } from '../../utils/Day';
+import { Day } from '../../utils/day';
 
 class TableLayout extends React.Component<any,TableState>{
     state:TableState={

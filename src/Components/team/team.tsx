@@ -1,6 +1,6 @@
 import { th } from "date-fns/locale";
 import React from "react";
-import { Day } from "../../utils/Day";
+import { Day } from "../../utils/day";
 import { User } from "../../utils/user";
 import { Vacation } from "../../utils/vacation";
 

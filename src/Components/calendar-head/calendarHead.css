@@ -3,20 +3,19 @@
     height: 64px;
     border: 1px solid rgba(126, 126, 126, 0.3);
     border-right: 0;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
 }
 .calendar__day span{
     width: 100%;
     display: block;
     text-align: center;
-    
+}
+
+.calendar__day span:first-child{
+    margin-bottom: 5px;
 }
 
 .calendar__day:first-of-type{
-    width: 262px;
+    width: 260px;
     border-right: 0;
     border-top: 0;
     border-left: 0;
@@ -24,6 +23,11 @@
 }
 .calendar__day:last-of-type{
     border-right: 1px solid rgba(126, 126, 126, 0.3);
+    background-color: #f3f3f3;
+}
+
+.weekend{
+    background-color: #f0f0f0;
 }
 
 
