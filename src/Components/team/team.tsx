@@ -3,53 +3,53 @@ import React from "react";
 import { Day } from "../../utils/day";
 import { User } from "../../utils/user";
 import { Vacation } from "../../utils/vacation";
+import './teamTable.css';
 
 interface TeamProps{
     key:number;
     name:string;
     users:User[];
-    retracted:boolean;
     currentDate:Date;
-    switchVisibility():void;
     vacations:Vacation[];
     daysInMonth:Day[];
 }
 
 class TeamTable extends React.Component<TeamProps,any>{
-    renderVacationsForUser(userId?:number):string[]{
-        let arr=[];
-        for(let i=0;i<this.props.daysInMonth.length;i++){
-            arr.push('');
-        }
-        return arr;
+    state={
+        retracted:false
+    }
+    switchVisibility=()=>{
+        this.setState({retracted:!this.state.retracted});
     }
     render(){
-        return (<tbody>
-            <tr>
+        return (<tbody className={this.state.retracted?" retracted":''}>
+            <tr key={'tr1'}>
                 <th>
                 {
                     this.props.name
                 }
+                <span> users:{this.props.users.length}</span>
+                <button onClick={this.switchVisibility}>hide</button>
                 </th>
                 {
-                    this.renderVacationsForUser().map((item)=>{
+                    this.props.daysInMonth.map((item)=>{
                         return(
-                            <td className={'daycell'}>
-                                {item}
+                            <td className={`daycell ${item.isWeekend?'weekend':''}`} key={item.date.toString()}>
+                                {''}
                             </td>
                         )
                     })
                 }
-            </tr>
+            </tr >
                 {
                     this.props.users.map((user)=>{
-                        return ( <tr>
-                            <th>{user.name}</th>
+                        return ( <tr key={user.id+'tr'} className={'userRow'}>
+                            <th key={user.id}>{user.name}</th>
                         {
-                            this.renderVacationsForUser(user.id).map((item)=>{
+                            this.props.daysInMonth.map((item)=>{
                                 return(
-                                    <td>
-                                        {item}
+                                    <td key={item.date.toString()} className={`daycell ${item.isWeekend?'weekend':''}`}>
+                                        {''}
                                     </td>
                                 )
                             })
