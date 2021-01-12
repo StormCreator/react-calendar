@@ -1,7 +1,7 @@
 import React from 'react';
 import './monthSwitcher.css';
 import { Component } from 'react';
-import { Day } from '../../utils/Day';
+import { Day } from '../../utils/day';
 import arrowPrev from '../../assets/img/arrow-prev.svg';
 import arrowNext from '../../assets/img/arrow-next.svg';
 

@@ -1,0 +1,22 @@
+.retracted .userRow{
+    display: none;
+}
+td,th{
+    border: 1px solid #D7D7D7;
+}
+td{
+    height: 33px;
+    width: 33px;
+    box-sizing: border-box;
+}
+tbody:not(:first-of-type):before
+{
+    content: '';
+    display: block;
+    height: 40px;
+}
+
+.dayCell:last-of-type{
+    background-color: #f3f3f3;
+}
+

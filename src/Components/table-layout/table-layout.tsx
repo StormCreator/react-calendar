@@ -8,7 +8,7 @@ import TeamTable from '../team';
 import {getDaysInMonth, startOfMonth} from 'date-fns';
 import { add, format, setDate, isWeekend } from 'date-fns';
 import CalendarHead from "../calendar-head";
-import { Day } from '../../utils/Day';
+import { Day } from '../../utils/day';
 
 class TableLayout extends React.Component<any,TableState>{
     state:TableState={
@@ -16,7 +16,6 @@ class TableLayout extends React.Component<any,TableState>{
             {
                 id:1,
                 name:'Front End team',
-                retracted:false,
                 users:[
                     {
                         id:1,
@@ -29,6 +28,24 @@ class TableLayout extends React.Component<any,TableState>{
                         name:'Front End team user 2',
                         email:'2@fsas.dfs',
                         teamId:1
+                    }
+                ]
+            },
+            {
+                id:2,
+                name:'Back End team',
+                users:[
+                    {
+                        id:3,
+                        name:'Back End team user 1',
+                        email:'3@fsas.dfs',
+                        teamId:2
+                    },
+                    {
+                        id:4,
+                        name:'Back End team user 2',
+                        email:'4@fsas.dfs',
+                        teamId:2
                     }
                 ]
             }
@@ -85,8 +102,6 @@ class TableLayout extends React.Component<any,TableState>{
                             key:team.id,
                             name:team.name,
                             users:team.users,
-                            retracted:team.retracted,
-                            switchVisibility:()=>{team.retracted=!team.retracted},
                             currentDate:this.state.currentDate,
                             vacations:this.state.vacations,
                             daysInMonth:this.state.daysInMonth

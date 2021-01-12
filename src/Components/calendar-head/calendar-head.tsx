@@ -1,5 +1,5 @@
 import React from 'react';
-import { Day } from '../../utils/Day';
+import { Day } from '../../utils/day';
 import './calendarHead.css';
 import { format } from 'date-fns';
 
@@ -18,7 +18,7 @@ const CalendarHead = (props: CalendarProps) => {
                     <button className="modal-button">Add Vacation</button>
                 </td>
                 {props.daysInMonth.map(day => (
-                    <td key={day.date.toDateString()} className="calendar__day">
+                    <td key={day.date.toDateString()} className={`calendar__day ${day.isWeekend ? "weekend" : ""}`}>
                         <span>
                             {format(day.date, 'EEEEEE')}
                         </span>
