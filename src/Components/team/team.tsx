@@ -2,7 +2,7 @@ import React from "react";
 import { Day } from "../../utils/day";
 import { User } from "../../utils/user";
 import { Vacation } from "../../utils/vacation";
-import { TeamsColors } from "../../utils/teamColors";
+import useTeamColor from '../../utils/useTeamColor';
 import hideArrow from '../../assets/img/hide-arrow.svg';
 import teamPeople from '../../assets/img/team-people.svg';
 import './teamTable.css';
@@ -11,20 +11,22 @@ interface TeamProps{
     key:number;
     name:string;
     users:User[];
-    currentDate:Date; //зачем?
     vacations:Vacation[];
     daysInMonth:Day[];
 }
 
 class TeamTable extends React.Component<TeamProps,any>{
     state={
-        retracted:false
+        retracted: false
     }
     switchVisibility=()=>{
         this.setState({retracted:!this.state.retracted});
     }
     render(){
-        return (<tbody className={this.state.retracted?" retracted":''}>
+        const { retracted } = this.state;
+        const { users } = this.props;
+
+        return (<tbody className={retracted?" retracted":'' }>
             <tr key={'tr1'}>
                 <th>
                     <div className="team__title">
@@ -33,7 +35,7 @@ class TeamTable extends React.Component<TeamProps,any>{
                         </p>
                         <div className="team__title-peoples">
                             <img src={teamPeople} alt="people-icon"/>
-                            <span>{this.props.users.length}</span>
+                            <span>{users.length}</span>
                         </div>
                         <button onClick={this.switchVisibility} className="hide-arrow">
                             <img src={hideArrow} alt="hide-icon"/>
