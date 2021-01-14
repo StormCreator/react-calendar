@@ -8,6 +8,7 @@ import { Vacations } from '../../utils/services/vacations';
 import hideArrow from '../../assets/img/hide-arrow.svg';
 import teamPeople from '../../assets/img/team-people.svg';
 import './teamTable.css';
+import { connect } from 'react-redux';
 
 // interface TeamProps{
 //     key:number;
@@ -98,4 +99,7 @@ class TeamTable extends React.Component<TeamProps,any>{
     }
 }
 
-export default TeamTable
+
+  
+
+export default TeamTable;
