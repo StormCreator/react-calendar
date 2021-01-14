@@ -11,6 +11,8 @@ import { add, format, setDate, isWeekend } from 'date-fns';
 import CalendarHead from "../calendar-head";
 import { Day } from '../../utils/day';
 
+
+
 class TableLayout extends React.Component<any,TableState>{
     state:TableState={
         teams:[
@@ -100,16 +102,10 @@ class TableLayout extends React.Component<any,TableState>{
                 <CalendarHead daysInMonth={daysInMonth}/>
                 {
                     this.state.teams.map((team)=>{
-
                         const teamProps={
-                            key: team.id,
-                            name: team.name,
-                            users: team.users,
-                            currentDate: currentDate,
-                            vacations: vacations,
+                            team: team,
                             daysInMonth: daysInMonth
-                        };
-                        
+                        }
                         return(
                             <TeamTable
                                 {...teamProps}
