@@ -66,10 +66,10 @@
     margin: 0;
     margin-bottom: 6px;
 }
-.vacation-type__header{
+.vacation-form-type__header{
     margin-bottom: 6px;
 }
-.vacation-type__input{
+.vacation-form-type__input{
     background: #E9E9E9;
     border-radius: 3px;
     width: 337px;
@@ -77,7 +77,7 @@
     outline: none;
     padding: 12px 17px;
 }
-.vacation-type{
+.vacation-form-type{
     padding-bottom: 64px;
 }
 .btn-block{

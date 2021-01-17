@@ -1,6 +1,5 @@
 import './monthSwitcher.css';
 import { Component } from 'react';
-import { Day } from '../../utils/Day';
 import arrowPrev from '../../assets/img/arrow-prev.svg';
 import arrowNext from '../../assets/img/arrow-next.svg';
 

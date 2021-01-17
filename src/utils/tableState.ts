@@ -1,4 +1,4 @@
-import { Day } from "./Day";
+import { Day } from "./day";
 import { Team } from "./team";
 import { User } from "./user";
 import { Vacation } from "./vacation";

@@ -13,7 +13,6 @@ import { Team } from '../../utils/team';
 import { connect } from 'react-redux';
 import { isVacation } from '../../utils/services/isVacation';
 import {differenceInCalendarDays, getDaysInMonth, isSameDay, startOfMonth} from 'date-fns';
-import CalendarHead from "../calendar-head";
 import Modal from '../modal';
 
 
@@ -100,11 +99,11 @@ class TableLayout extends React.Component<any,TableState>{
                     />
             
                 </table>
-                 <Modal 
+                <Modal 
                     currentDate={isSameDay(this.state.currentDate, new Date)?this.state.currentDate:startOfMonth(this.state.currentDate)} 
                     handleSubmit={this.processModal} close={()=>{this.setState({modalOpened: false , modalState:'loading'})}} 
                     isOpened={this.state.modalOpened} modalState={this.state.modalState}>
-                    </Modal>
+                </Modal>
 
             </>
         )

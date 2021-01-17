@@ -39,9 +39,9 @@ export default function Modal(props:any){
                                 </label>
                                 </div>
                             </div>
-                            <div className="vacation-type">
-                            <p className='vacation-type__header title'>Vac Type</p>
-                            <select className='vacation-type__input' name='vacType'>
+                            <div className="vacation-form-type">
+                            <p className='vacation-form-type__header title'>Vac Type</p>
+                            <select className='vacation-form-type__input' name='vacType'>
                                 <option value="PD">Paid Day Off (PD)</option>
                                 <option value="uPD">Unpaid Day Off (UPD)</option>
                             </select>
