@@ -5,7 +5,8 @@ import { format } from 'date-fns';
 
 
 interface CalendarProps{
-    daysInMonth: Day[]
+    daysInMonth: Day[],
+    openModal:()=>void;
 }
 
 const CalendarHead = (props: CalendarProps) => {
@@ -15,7 +16,7 @@ const CalendarHead = (props: CalendarProps) => {
         <thead>
             <tr className="calendar">
                 <td className="calendar__day">
-                    <button className="modal-button">Add Vacation</button>
+                    <button className="modal-button" onClick={props.openModal}>Add Vacation</button>
                 </td>
                 {props.daysInMonth.map(day => (
                     <td key={day.date.toDateString()} className={`calendar__day ${day.isWeekend ? "weekend" : ""}`}>

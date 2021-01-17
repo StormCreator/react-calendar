@@ -1,0 +1,71 @@
+.vacation::after{
+    content: '';
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    display: block;
+    width: 100%;
+    height: calc(100%-2px);
+    background-color: teal;
+    border: 1px solid teal;
+}
+
+.vacation-day::after{
+    content: '';
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    width: calc(100% -20px);
+    border-radius: 3px;
+    height: calc(100% -2px);
+    border: 1px solid teal;
+    background-color: teal;
+}
+
+.vacation-start::after{
+    content: '';
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    display: block;
+    width: 100%;
+    height: calc(100%-2px);
+    background-color: teal;
+    border: 1px solid teal;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.vacation-end::after{
+    content: '';
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    right: 2px;
+    display: block;
+    width: 100%;
+    height: calc(100%-2px);
+    background-color: teal;
+    border: 1px solid teal;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.vacation-type{
+    position: absolute;
+    top: 0;
+    left: 4px;
+    z-index: 5;
+    font-size: 14px;
+    color: orange;
+    transform: translateY(50%);
+
+}
+
+.weekend{
+    background-color: #f0f0f0;
+}
+
