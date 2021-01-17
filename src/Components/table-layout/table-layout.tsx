@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { Component } from "react";
 import { TableState } from '../../utils/tableState';
 import './tableLayout.css';
@@ -6,10 +6,12 @@ import { User } from '../../utils/user';
 import MonthSwitcher from '../month-switcher';
 import TeamTable from '../team';
 import CalendarFooter from '../calendar-footer';
-import {getDaysInMonth, startOfMonth} from 'date-fns';
+import {differenceInCalendarDays, getDaysInMonth, isSameDay, startOfMonth} from 'date-fns';
 import { add, format, setDate, isWeekend } from 'date-fns';
 import CalendarHead from "../calendar-head";
-import { Day } from '../../utils/day';
+import { Day } from '../../utils/Day';
+import Modal from '../modal';
+
 
 class TableLayout extends React.Component<any,TableState>{
     state:TableState={
@@ -53,9 +55,19 @@ class TableLayout extends React.Component<any,TableState>{
         ],
         vacations:[],
         currentDate:  new Date(),
-        daysInMonth: []
+        daysInMonth: [],
+        modalOpened: false,
+        modalState:'loading'
     };
-    
+    processModal = (event:any)=>{
+        event.preventDefault();
+        const form = event.target;
+        //console.log(form.startDate.value,form.endDate.value)
+        if(differenceInCalendarDays(new Date(form.endDate.value),new Date(form.startDate.value))<0){
+            this.setState({modalState:'error'});
+        }
+        //console.log(form.vacType.value);
+    }
     componentDidMount(){
         const { currentDate } = this.state;
         this.switchMonth = this.switchMonth.bind(this);
@@ -97,17 +109,16 @@ class TableLayout extends React.Component<any,TableState>{
                     monthName = {format(currentDate, 'MMMM')}
             />
             <table>
-                <CalendarHead daysInMonth={daysInMonth}/>
+                <CalendarHead daysInMonth={daysInMonth} openModal={()=>{this.setState({modalOpened:true}); setTimeout(()=>{this.setState({modalState:'error'})},1200); setTimeout(()=>{this.setState({modalState:'normal'})},7000)}}/>
                 {
                     this.state.teams.map((team)=>{
-
                         const teamProps={
                             key: team.id,
                             name: team.name,
                             users: team.users,
                             currentDate: currentDate,
                             vacations: vacations,
-                            daysInMonth: daysInMonth
+                            daysInMonth: daysInMonth,
                         };
                         
                         return(
@@ -122,6 +133,11 @@ class TableLayout extends React.Component<any,TableState>{
                     monthName = {format(currentDate, 'MMMM')}
                 />
             </table>
+            <Modal 
+            currentDate={isSameDay(this.state.currentDate, new Date)?this.state.currentDate:startOfMonth(this.state.currentDate)} 
+            handleSubmit={this.processModal} close={()=>{this.setState({modalOpened: false , modalState:'loading'})}} 
+            isOpened={this.state.modalOpened} modalState={this.state.modalState}>
+            </Modal>
             </>
         )
     }}

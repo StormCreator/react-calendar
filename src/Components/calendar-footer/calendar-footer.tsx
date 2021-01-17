@@ -1,6 +1,6 @@
 import React from 'react';
 import './calendarFooter.css'
-import { Day } from '../../utils/day';
+import { Day } from '../../utils/Day';
 
 
 interface footerProps{

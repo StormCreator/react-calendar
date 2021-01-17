@@ -1,5 +1,5 @@
 import React from "react";
-import { Day } from "../../utils/day";
+import { Day } from "../../utils/Day";
 import { User } from "../../utils/user";
 import { Vacation } from "../../utils/vacation";
 import useTeamColor from '../../utils/useTeamColor';
