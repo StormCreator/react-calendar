@@ -6,6 +6,7 @@ import { getVacationsOnColumn } from '../../utils/functions/vacations';
 import { isWeekend } from 'date-fns';
 
 
+
 interface footerProps{
     daysInMonth: Day[],
     monthName: string,
