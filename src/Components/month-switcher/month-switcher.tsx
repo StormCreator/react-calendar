@@ -1,4 +1,3 @@
-import React from 'react';
 import './monthSwitcher.css';
 import { Component } from 'react';
 import { Day } from '../../utils/Day';
@@ -12,9 +11,6 @@ export interface MonthSwitcherProps{
 
 class MonthSwitcher extends Component<MonthSwitcherProps> {
 
-    constructor(props: MonthSwitcherProps){
-        super(props);
-    }
     render(){
         return(
             <div className="month-switcher">

@@ -1,12 +1,18 @@
-import { Component} from 'react';
-import  React  from 'react';
 import TableLayout from '../table-layout';
-// import LayoutExample from '../layout-example';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { rootReducer } from '../../store/reducers';
 
+
+const store = createStore(rootReducer);
 
 const App =  () => {
     return (
-        <TableLayout />
+        <>
+            <Provider store={store}>
+                <TableLayout />
+            </Provider>
+        </>
     );
 }
 
