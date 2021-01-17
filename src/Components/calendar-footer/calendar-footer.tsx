@@ -1,17 +1,21 @@
 import React from 'react';
 import './calendarFooter.css'
 import { Day } from '../../utils/day';
+import { Vacation } from '../../utils/vacation';
+import { getVacationsOnColumn } from '../../utils/functions/vacations';
+import { isWeekend } from 'date-fns';
 
 
 interface footerProps{
     daysInMonth: Day[],
-    monthName: string
+    monthName: string,
+    vacations: Vacation[]
 }
 
 
 const CalendarFooter = (props: footerProps) => {
 
-    const { monthName, daysInMonth } = props;
+    const { monthName, daysInMonth, vacations } = props;
 
     return(
         <tfoot>
@@ -20,11 +24,11 @@ const CalendarFooter = (props: footerProps) => {
                     <p>Day Person Stats</p>
                 </td>
                 {daysInMonth.map(day => (
-                    <td key={day.date.toDateString()} className="dayCell">
-
+                    <td key={day.date.toDateString()} className="dayCell sum-column">
+                        {!isWeekend(day.date)? getVacationsOnColumn(day, vacations): ''}
                     </td>
                 ))}
-                <td className="dayCell">
+                <td className="dayCell sum-column">
 
                 </td>
             </tr>

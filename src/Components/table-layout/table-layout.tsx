@@ -8,58 +8,21 @@ import {getDaysInMonth} from 'date-fns';
 import { add, format, setDate, isWeekend } from 'date-fns';
 import CalendarHead from "../calendar-head";
 import { Day } from '../../utils/day';
-import { useSelector } from 'react-redux';
+import { User } from '../../utils/user';
+import { Team } from '../../utils/team';
 import { connect } from 'react-redux';
+import { isVacation } from '../../utils/services/isVacation';
 
 
 
 
 class TableLayout extends React.Component<any,TableState>{
     state:TableState={
-        teams:[
-            {
-                id:1,
-                name:'Frontend',
-                users:[
-                    {
-                        id:1,
-                        name:'Front End team user 1',
-                        email:'1@fsas.dfs',
-                        teamId:1
-                    },
-                    {
-                        id:2,
-                        name:'Front End team user 2',
-                        email:'2@fsas.dfs',
-                        teamId:1
-                    }
-                ]
-            },
-            {
-                id:2,
-                name:'Backend',
-                users:[
-                    {
-                        id:3,
-                        name:'Back End team user 1',
-                        email:'3@fsas.dfs',
-                        teamId:2
-                    },
-                    {
-                        id:4,
-                        name:'Back End team user 2',
-                        email:'4@fsas.dfs',
-                        teamId:2
-                    }
-                ]
-            }
-        ],
         currentDate:  new Date(),
         daysInMonth: []
     };
     
     componentDidMount(){
-        console.log(this.props);
         const { currentDate } = this.state;
         this.switchMonth = this.switchMonth.bind(this);
         this.setDaysInMonth = this.setDaysInMonth.bind(this);
@@ -78,12 +41,14 @@ class TableLayout extends React.Component<any,TableState>{
 
 
     private setDaysInMonth(currentDate: Date): Day[]{
+        
         let daysArray: Day[] = [];
         for(let i = 1; i <= getDaysInMonth(currentDate); i++){
             let date: Date = setDate(currentDate, i);
             let day: Day = {
                 date: date,
                 isWeekend: isWeekend(date),
+                isVac: false
             }
             daysArray.push(day);
         }
@@ -93,43 +58,47 @@ class TableLayout extends React.Component<any,TableState>{
 
     render(){
         const { currentDate, daysInMonth } = this.state;
+        const { teams, vacations } = this.props;
         return(
             <>
-            <MonthSwitcher 
-                    dateChanger = {this.switchMonth}
-                    monthName = {format(currentDate, 'MMMM')}
-            />
-            <table>
-                <CalendarHead daysInMonth={daysInMonth}/>
-                    {
-                        this.state.teams.map((team)=>{
-                            const teamProps={
-                                team: team,
-                                daysInMonth: daysInMonth
-                            }
-                            return(
-                                <TeamTable
-                                    {...teamProps}
-                                />
-                            )
-                        })
-                    }
-                <CalendarFooter 
-                    daysInMonth={daysInMonth}
-                    monthName = {format(currentDate, 'MMMM')}
+                <MonthSwitcher 
+                        dateChanger = {this.switchMonth}
+                        monthName = {format(currentDate, 'MMMM')}
                 />
-            </table>
+                <table>
+                    <CalendarHead daysInMonth={daysInMonth}/>
+                        {
+                            teams.map((team: Team)=>{
+                                const teamProps={
+                                    team,
+                                    daysInMonth,
+                                    vacations,
+                                    currentDate
+                                }
+                                return(
+                                    <TeamTable
+                                        {...teamProps}
+                                    />
+                                )
+                            })
+                        }
+                    <CalendarFooter 
+                        daysInMonth={daysInMonth}
+                        monthName = {format(currentDate, 'MMMM')}
+                        vacations = {vacations}
+                    />
+                </table>
             </>
         )
     }}
 
 
     const mapStateToProps = (store:any) => {
-        console.log(store) 
         return {
             vacations: store.vacations,
-            users: store.users
+            teams: store.teams
         }
     }
+
 
 export default connect(mapStateToProps)(TableLayout);

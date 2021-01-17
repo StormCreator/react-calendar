@@ -1,26 +1,20 @@
 import React from "react";
 import { Day } from "../../utils/day";
-import { User } from "../../utils/user";
 import { Vacation } from "../../utils/vacation";
-import useTeamColor from '../../utils/useTeamColor';
 import { Team } from '../../utils/team';
-import { Vacations } from '../../utils/services/vacations';
 import hideArrow from '../../assets/img/hide-arrow.svg';
 import teamPeople from '../../assets/img/team-people.svg';
 import './teamTable.css';
-import { connect } from 'react-redux';
+import { User } from '../../utils/user';
+import { getVacationQuantity } from '../../utils/functions/vacations';
+import DayCell  from '../day-cell';
 
-// interface TeamProps{
-//     key:number;
-//     name:string;
-//     users:User[];
-//     vacations:Vacation[];
-//     daysInMonth:Day[];
-// }
 
 interface TeamProps{
     team: Team,
-    daysInMonth: Day[]
+    daysInMonth: Day[],
+    vacations: Vacation[],
+    currentDate: Date
 }
 
 class TeamTable extends React.Component<TeamProps,any>{
@@ -29,22 +23,23 @@ class TeamTable extends React.Component<TeamProps,any>{
         super(props);
         this.state={
             retracted: false,
-            memberList: []
         }
     }
-
-
-
-    switchVisibility=()=>{
-        this.setState({retracted:!this.state.retracted});
+    componentDidMount(){
+        const { team: { users}, vacations } = this.props;
     }
 
+    private switchVisibility= (): void =>{
+        this.setState({retracted:!this.state.retracted});
+    }
 
     render(){
         const { retracted } = this.state;
         const {
             team: { users, id, name, },
-            daysInMonth
+            daysInMonth,
+            vacations,
+            currentDate
         } = this.props;
         return (<tbody className={retracted?" retracted":'' }>
             <tr key={'tr1'}>
@@ -80,16 +75,19 @@ class TeamTable extends React.Component<TeamProps,any>{
                         return ( <tr key={user.id+'tr'} className={'userRow'}>
                             <th key={user.id} className="team__user">{user.name}</th>
                         {
-                            daysInMonth.map((item)=>{
+                            daysInMonth.map((day)=>{
                                 return(
-                                    <td key={item.date.toString()} className={`daycell ${item.isWeekend?'weekend':''}`}>
-                                        {''}
-                                    </td>
+                                    <DayCell 
+                                        day={day}
+                                        vacations={vacations}
+                                        userId={user.id}
+                                        key={day.date.toString()}
+                                    />
                                 )
                             })
                         }
-                            <td className="dayCell">
-
+                            <td className="dayCell sum-column">
+                                <span>{ getVacationQuantity(user.id, vacations, currentDate)}</span>
                             </td>
                         </tr>
                         )
@@ -100,6 +98,5 @@ class TeamTable extends React.Component<TeamProps,any>{
 }
 
 
-  
 
 export default TeamTable;
