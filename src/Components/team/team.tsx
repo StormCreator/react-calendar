@@ -8,7 +8,7 @@ import './teamTable.css';
 import { User } from '../../utils/user';
 import { getVacationQuantity } from '../../utils/functions/vacations';
 import DayCell  from '../day-cell';
-
+import Radium from 'radium';
 
 interface TeamProps{
     team: Team,
@@ -27,6 +27,7 @@ class TeamTable extends React.Component<TeamProps,any>{
     }
     componentDidMount(){
         const { team: { users}, vacations } = this.props;
+        
     }
 
     private switchVisibility= (): void =>{
@@ -34,6 +35,9 @@ class TeamTable extends React.Component<TeamProps,any>{
     }
 
     render(){
+        const randomColor = Math.floor(Math.random()*16777215).toString(16);
+        const blStyle ={borderLeft: `3px solid #${randomColor}`};
+        
         const { retracted } = this.state;
         const {
             team: { users, id, name, },
@@ -43,7 +47,7 @@ class TeamTable extends React.Component<TeamProps,any>{
         } = this.props;
         return (<tbody className={retracted?" retracted":'' }>
             <tr key={'tr1'}>
-                <th>
+                <th style={blStyle}>
                     <div className="team__title">
                         <p>
                             {name}
@@ -73,7 +77,7 @@ class TeamTable extends React.Component<TeamProps,any>{
                 {
                     users.map((user)=>{
                         return ( <tr key={user.id+'tr'} className={'userRow'}>
-                            <th key={user.id} className="team__user">{user.name}</th>
+                            <th key={user.id} className="team__user" style={blStyle}>{user.name}</th>
                         {
                             daysInMonth.map((day)=>{
                                 return(
@@ -82,6 +86,7 @@ class TeamTable extends React.Component<TeamProps,any>{
                                         vacations={vacations}
                                         userId={user.id}
                                         key={day.date.toString()}
+                                        color={randomColor}
                                     />
                                 )
                             })
@@ -99,4 +104,4 @@ class TeamTable extends React.Component<TeamProps,any>{
 
 
 
-export default TeamTable;
+export default Radium(TeamTable);

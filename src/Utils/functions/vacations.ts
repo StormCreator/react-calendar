@@ -1,6 +1,7 @@
 import { Vacation } from '../vacation';
 import { isWithinInterval, eachDayOfInterval, isWeekend, isSameDay } from 'date-fns';
 import { Day } from '../day';
+import styled from 'styled-components';
 
 
 export const getVacationQuantity = (userId: number, vacations: Vacation[], currentDate: Date): number => {
@@ -49,4 +50,22 @@ export const vacationSearch = (vacations: Vacation[], userId: number, day: Day):
         }
     });
     return matchVacation;
+}
+
+export const vacationColor=(props:string)=>{
+    return(
+        styled.td`
+            &:after{
+                content: '';
+                position: absolute;
+                top: 2px;
+                bottom: 2px;
+                display: block;
+                width: 100%;
+                height: calc(100%-2px);
+                background-color: ${props};
+                border: 1px solid ${props};
+            }
+        `
+    )
 }
