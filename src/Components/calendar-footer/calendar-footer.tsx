@@ -1,22 +1,23 @@
 import React from 'react';
 import './calendarFooter.css'
-import { Vacation } from '../../utils/vacation';
-import { getVacationsOnColumn } from '../../utils/functions/vacations';
+import { Vacation } from '../../utils/models/vacation';
+import { getVacationsOnColumn, setTotalMonthVacation } from '../../utils/functions/vacations';
 import { isWeekend } from 'date-fns';
-import { Day } from '../../utils/day';
+import { Day } from '../../utils/models/day';
 
 
 
 interface footerProps{
     daysInMonth: Day[],
     monthName: string,
-    vacations: Vacation[]
+    vacations: Vacation[],
+    currentDate: Date
 }
 
 
 const CalendarFooter = (props: footerProps) => {
 
-    const { monthName, daysInMonth, vacations } = props;
+    const { monthName, daysInMonth, vacations, currentDate } = props;
 
     return(
         <tfoot>
@@ -40,7 +41,7 @@ const CalendarFooter = (props: footerProps) => {
                         <hr></hr>
                         <div className="calendar__footer-info">
                             <p>On vacation</p>
-                            <span>15</span>
+                            <span>{setTotalMonthVacation(vacations, currentDate)}</span>
                             <span>12%</span> 
                         </div>
                     </div>

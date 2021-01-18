@@ -1,19 +1,26 @@
 import React, { FormEvent } from 'react';
 import { Component } from "react";
-import { TableState } from '../../utils/tableState';
 import './tableLayout.css';
 import MonthSwitcher from '../month-switcher';
 import TeamTable from '../team';
 import CalendarFooter from '../calendar-footer';
 import { add, format, setDate, isWeekend } from 'date-fns';
 import CalendarHead from "../calendar-head";
-import { Day } from '../../utils/day';
-import { User } from '../../utils/user';
-import { Team } from '../../utils/team';
+import { Day } from '../../utils/models/day';
+import { Team } from '../../utils/models/team';
+import { Store } from '../../utils/models/store';
+import { setTotalMonthVacation } from '../../utils/functions/vacations';
 import { connect } from 'react-redux';
-import { isVacation } from '../../utils/services/isVacation';
 import {differenceInCalendarDays, getDaysInMonth, isSameDay, startOfMonth} from 'date-fns';
 import Modal from '../modal';
+
+interface TableState{
+    currentDate:Date;
+    daysInMonth:Day[];
+    modalOpened:boolean;
+    modalState:string;
+}
+
 
 
 class TableLayout extends React.Component<any,TableState>{
@@ -21,7 +28,7 @@ class TableLayout extends React.Component<any,TableState>{
         currentDate:  new Date(),
         daysInMonth: [],
         modalOpened: false,
-        modalState:'loading'
+        modalState:'loading',
     };
     processModal = (event:React.FormEvent<HTMLFormElement>):void=>{
         event.preventDefault();
@@ -36,7 +43,6 @@ class TableLayout extends React.Component<any,TableState>{
         this.setDaysInMonth = this.setDaysInMonth.bind(this);
         this.setState({daysInMonth: this.setDaysInMonth(currentDate)});
     }
-
     protected switchMonth(e: Event, switchDirection: number): void{
         let { currentDate, daysInMonth } = this.state;
         const newDate: Date = add(currentDate , {  months: switchDirection });
@@ -46,10 +52,7 @@ class TableLayout extends React.Component<any,TableState>{
             daysInMonth: daysInMonth
         });
     }
-
-
     private setDaysInMonth(currentDate: Date): Day[]{
-        
         let daysArray: Day[] = [];
         for(let i = 1; i <= getDaysInMonth(currentDate); i++){
             let date: Date = setDate(currentDate, i);
@@ -62,8 +65,6 @@ class TableLayout extends React.Component<any,TableState>{
         }
         return daysArray;
     }
-
-
     render(){
         const { currentDate, daysInMonth } = this.state;
         const { teams, vacations } = this.props;
@@ -94,21 +95,19 @@ class TableLayout extends React.Component<any,TableState>{
                         daysInMonth={daysInMonth}
                         monthName = {format(currentDate, 'MMMM')}
                         vacations = {vacations}
+                        currentDate = {currentDate}
                     />
-            
                 </table>
                 <Modal 
                     currentDate={isSameDay(this.state.currentDate, new Date)?this.state.currentDate:startOfMonth(this.state.currentDate)} 
                     handleSubmit={this.processModal} close={()=>{this.setState({modalOpened: false , modalState:'loading'})}} 
                     isOpened={this.state.modalOpened} modalState={this.state.modalState}/>
-                
-
             </>
         )
     }}
 
 
-    const mapStateToProps = (store:any) => {
+    const mapStateToProps = (store: Store) => {
         return {
             vacations: store.vacations,
             teams: store.teams

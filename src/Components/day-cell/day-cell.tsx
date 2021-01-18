@@ -1,6 +1,7 @@
-import { Day } from '../../utils/day';
-import { Vacation } from '../../utils/vacation';
-import { vacationColor, vacationSearch } from '../../utils/functions/vacations';
+
+import { Day } from '../../utils/models/day';
+import { Vacation } from '../../utils/models/vacation';
+import { vacationSearch } from '../../utils/functions/vacations';
 import { isWithinInterval, isSameDay, eachDayOfInterval } from 'date-fns'
 import './dayCell.css';
 import Radium from 'radium';
@@ -37,18 +38,32 @@ const DayCell = (props: DayCellProps) => {
         const matchingVacation = vacationSearch(vacations, userId, day);
         if(matchingVacation){
             let { startDate, endDate } = matchingVacation;
-            const vacationInterval: Date[] = eachDayOfInterval({start: matchingVacation.startDate, end: matchingVacation.endDate});
-            if(vacationInterval.length % 2 !== 0){
-                const centerOfInterval: number = Math.floor(vacationInterval.length / 2);
-                console.log(centerOfInterval);
-                if(isSameDay(vacationInterval[centerOfInterval], day.date)){
-                    isCenter = true;
-                }
-            }else{
+            const vacationInterval: Date[] = eachDayOfInterval({start: startDate, end: endDate});
+            const centerOfInterval: number = Math.floor(vacationInterval.length / 2);
+            // if(vacationInterval.length %2 !== 0){
 
+            // }
+            console.log(vacationInterval[centerOfInterval - 1]);
+            // console.log(centerOfInterval);
+            if(isSameDay(vacationInterval[centerOfInterval], day.date)){
+                isCenter = true;
             }
+
         }
         return isCenter;
+    }
+
+    const isOddVacation = () => {
+        let isOdd: boolean = true;
+        const matchingVacation = vacationSearch(vacations, userId, day);
+        if(matchingVacation){
+            let { startDate, endDate } = matchingVacation;
+            const vacationInterval: Date[] = eachDayOfInterval({start: startDate, end: endDate});
+            if(vacationInterval.length % 2 === 0){
+                isOdd = false;
+            }
+        }
+        return isOdd;
     }
 
     const getVacationDayType = ():string => {
@@ -82,8 +97,8 @@ const DayCell = (props: DayCellProps) => {
     if(vacationMatch()){
         const cell = vacationColor(props.color);
         return(
-            <td key={props.day.date.toString()} /*style={cellStyle}*/style={{'--color':'#'+props.color}as styles} data-color={'#'+props.color} className={`daycell ${props.day.isWeekend?'weekend':''} ${getVacationDayType()}`}>
-                {isVacationCenter()? <span className="vacation-type">{vacationSearch(vacations, userId, day)?.type}</span>: ''}
+            <td key={props.day.date.toString()} style={{'--color':'#'+props.color}as styles} data-color={'#'+props.color} className={`daycell ${props.day.isWeekend?'weekend':''} ${getVacationDayType()}`}>
+                {isVacationCenter()? <span className={`vacation-type ${isOddVacation()?'': 'odd-vacation'}`}>{vacationSearch(vacations, userId, day)?.type}</span>: ''}}
             </td>
         )
     }

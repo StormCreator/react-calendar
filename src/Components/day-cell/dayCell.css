@@ -1,3 +1,7 @@
+.weekend{
+    background-color: #f0f0f0;
+}
+
 .vacation::after{
     content: '';
     position: absolute;
@@ -6,6 +10,7 @@
     display: block;
     width: 100%;
     height: calc(100%-2px);
+    z-index: 4;
     background-color: var(--color);
     border: 1px solid var(--color);
 }
@@ -37,6 +42,7 @@
     border: 1px solid var(--color);
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
+    z-index: 2;
 }
 
 .vacation-end::after{
@@ -52,20 +58,26 @@
     border: 1px solid var(--color);
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
-}
+    z-index: 2;
+} 
 
 .vacation-type{
     position: absolute;
-    top: 0;
-    left: 4px;
+    top: 5px;
     z-index: 5;
     font-size: 14px;
     color:#fff;
     transform: translateY(50%);
-
 }
 
-.weekend{
-    background-color: #f0f0f0;
+.odd-vacation{
+    position: absolute;
+    top: 5px;
+    transform:translateX(-50%);
+    z-index: 5;
+    font-size: 14px;
+    color: orange;
 }
+
+
 

@@ -1,8 +1,6 @@
-import { Vacation } from '../vacation';
+import { Vacation } from '../models/vacation';
 import { isWithinInterval, eachDayOfInterval, isWeekend, isSameDay } from 'date-fns';
-import { Day } from '../day';
-import styled from 'styled-components';
-
+import { Day } from '../models/day';
 
 export const getVacationQuantity = (userId: number, vacations: Vacation[], currentDate: Date): number => {
     let quantity: number = 0;
@@ -52,20 +50,23 @@ export const vacationSearch = (vacations: Vacation[], userId: number, day: Day):
     return matchVacation;
 }
 
-export const vacationColor=(props:string)=>{
-    return(
-        styled.td`
-            &:after{
-                content: '';
-                position: absolute;
-                top: 2px;
-                bottom: 2px;
-                display: block;
-                width: 100%;
-                height: calc(100%-2px);
-                background-color: ${props};
-                border: 1px solid ${props};
+
+export const setTotalMonthVacation = (vacations: Vacation[], currentDate: Date): number => {
+    let total: number = 0;
+    vacations.forEach(vacation => {
+        let { startDate, endDate } = vacation;
+        let match: boolean = false;
+        const vacationInterval: Date[] = eachDayOfInterval({start: startDate, end: endDate});
+        vacationInterval.forEach(day => {
+            if(day.getMonth() === currentDate.getMonth() && day.getFullYear() === currentDate.getFullYear() && !isWeekend(day)){
+                match = true;
+                return;
             }
-        `
-    )
+        });
+        if(match){
+            total += 1;
+        }
+    });
+
+    return total;
 }

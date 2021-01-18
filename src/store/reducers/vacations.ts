@@ -3,7 +3,7 @@ const initialState = {
     vacationList: [
         {
             startDate: new Date(2021, 0, 15),
-            endDate: new Date(2021, 0, 16),
+            endDate: new Date(2021, 0, 17),
             type: 'paid',
             userId: 1
         },
@@ -39,9 +39,45 @@ const initialState = {
         },
         {
             startDate: new Date(2021, 0, 25),
-            endDate: new Date(2021, 1, 2),
+            endDate: new Date(2021, 0, 31),
             type: 'paid',
             userId: 4
+        },
+        {
+            startDate: new Date(2021, 0, 1),
+            endDate: new Date(2021, 0, 10),
+            type: 'paid',
+            userId: 5
+        },
+        {
+            startDate: new Date(2021, 0, 12),
+            endDate: new Date(2021, 0, 12),
+            type: 'paid',
+            userId: 6
+        },
+        {
+            startDate: new Date(2021, 0, 23),
+            endDate: new Date(2021, 0, 25),
+            type: 'paid',
+            userId: 6
+        },
+        {
+            startDate: new Date(2020, 11, 23),
+            endDate: new Date(2020, 11, 25),
+            type: 'paid',
+            userId: 1
+        },
+        {
+            startDate: new Date(2020, 11, 11),
+            endDate: new Date(2020, 11, 30),
+            type: 'paid',
+            userId: 4
+        },
+        {
+            startDate: new Date(2020, 11, 8),
+            endDate: new Date(2020, 11, 15),
+            type: 'paid',
+            userId: 6
         }
     ]
 }

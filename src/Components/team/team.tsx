@@ -1,11 +1,10 @@
 import React from "react";
-import { Day } from "../../utils/day";
-import { Vacation } from "../../utils/vacation";
-import { Team } from '../../utils/team';
+import { Day } from "../../utils/models/day";
+import { Vacation } from "../../utils/models/vacation";
+import { Team } from '../../utils/models/team';
 import hideArrow from '../../assets/img/hide-arrow.svg';
 import teamPeople from '../../assets/img/team-people.svg';
 import './teamTable.css';
-import { User } from '../../utils/user';
 import { getVacationQuantity } from '../../utils/functions/vacations';
 import DayCell  from '../day-cell';
 import Radium from 'radium';
@@ -28,11 +27,6 @@ class TeamTable extends React.Component<TeamProps,TeamState>{
             retracted: false,
         }
     }
-    componentDidMount(){
-        const { team: { users}, vacations } = this.props;
-        
-    }
-
     private switchVisibility= (): void =>{
         this.setState({retracted:!this.state.retracted});
     }
@@ -46,7 +40,7 @@ class TeamTable extends React.Component<TeamProps,TeamState>{
             team: { users, id, name, },
             daysInMonth,
             vacations,
-            currentDate
+            currentDate,
         } = this.props;
         return (<tbody className={retracted?" retracted":'' }>
             <tr key={'tr1'}>
