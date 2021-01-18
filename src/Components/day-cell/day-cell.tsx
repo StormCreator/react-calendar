@@ -95,10 +95,10 @@ const DayCell = (props: DayCellProps) => {
     }
 
     if(vacationMatch()){
-        const cell = vacationColor(props.color);
         return(
             <td key={props.day.date.toString()} style={{'--color':'#'+props.color}as styles} data-color={'#'+props.color} className={`daycell ${props.day.isWeekend?'weekend':''} ${getVacationDayType()}`}>
-                {isVacationCenter()? <span className={`vacation-type ${isOddVacation()?'': 'odd-vacation'}`}>{vacationSearch(vacations, userId, day)?.type}</span>: ''}}
+                {/* {isVacationCenter()? <span className={`vacation-type ${isOddVacation()?'': 'odd-vacation'}`}>{vacationSearch(vacations, userId, day)?.type}</span>: ''}} */}
+                {isVacationCenter()? <span className={`vacation-type ${isOddVacation()?'':'odd-vacation'}`}>{vacationSearch(vacations, userId, day)?.type}</span>: ''}
             </td>
         )
     }
