@@ -67,7 +67,6 @@
     z-index: 5;
     font-size: 14px;
     color:#fff;
-    transform: translateY(50%);
 }
 
 .odd-vacation{
@@ -76,7 +75,7 @@
     transform:translateX(-50%);
     z-index: 5;
     font-size: 14px;
-    color: orange;
+    color: #fff;
 }
 
 
