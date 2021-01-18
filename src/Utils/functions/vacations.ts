@@ -1,6 +1,6 @@
-import { Vacation } from '../vacation';
+import { Vacation } from '../models/vacation';
 import { isWithinInterval, eachDayOfInterval, isWeekend, isSameDay } from 'date-fns';
-import { Day } from '../day';
+import { Day } from '../models/day';
 
 
 export const getVacationQuantity = (userId: number, vacations: Vacation[], currentDate: Date): number => {

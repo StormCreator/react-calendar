@@ -1,5 +1,5 @@
-import { Day } from '../../utils/day';
-import { Vacation } from '../../utils/vacation';
+import { Day } from '../../utils/models/day';
+import { Vacation } from '../../utils/models/vacation';
 import { vacationSearch } from '../../utils/functions/vacations';
 import { isWithinInterval, isSameDay, eachDayOfInterval } from 'date-fns'
 import './dayCell.css';
