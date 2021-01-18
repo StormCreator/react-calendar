@@ -20,18 +20,32 @@ const DayCell = (props: DayCellProps) => {
         const matchingVacation = vacationSearch(vacations, userId, day);
         if(matchingVacation){
             let { startDate, endDate } = matchingVacation;
-            const vacationInterval: Date[] = eachDayOfInterval({start: matchingVacation.startDate, end: matchingVacation.endDate});
-            if(vacationInterval.length % 2 !== 0){
-                const centerOfInterval: number = Math.floor(vacationInterval.length / 2);
-                console.log(centerOfInterval);
-                if(isSameDay(vacationInterval[centerOfInterval], day.date)){
-                    isCenter = true;
-                }
-            }else{
+            const vacationInterval: Date[] = eachDayOfInterval({start: startDate, end: endDate});
+            const centerOfInterval: number = Math.floor(vacationInterval.length / 2);
+            // if(vacationInterval.length %2 !== 0){
 
+            // }
+            console.log(vacationInterval[centerOfInterval - 1]);
+            // console.log(centerOfInterval);
+            if(isSameDay(vacationInterval[centerOfInterval], day.date)){
+                isCenter = true;
             }
+
         }
         return isCenter;
+    }
+
+    const isOddVacation = () => {
+        let isOdd: boolean = true;
+        const matchingVacation = vacationSearch(vacations, userId, day);
+        if(matchingVacation){
+            let { startDate, endDate } = matchingVacation;
+            const vacationInterval: Date[] = eachDayOfInterval({start: startDate, end: endDate});
+            if(vacationInterval.length % 2 === 0){
+                isOdd = false;
+            }
+        }
+        return isOdd;
     }
 
     const getVacationDayType = ():string => {
@@ -65,7 +79,7 @@ const DayCell = (props: DayCellProps) => {
     if(vacationMatch()){
         return(
             <td key={props.day.date.toString()} className={`daycell ${props.day.isWeekend?'weekend':''} ${getVacationDayType()}`}>
-                {isVacationCenter()? <span className="vacation-type">{vacationSearch(vacations, userId, day)?.type}</span>: ''}
+                {isVacationCenter()? <span className={`vacation-type ${isOddVacation()?'': 'odd-vacation'}`}>{vacationSearch(vacations, userId, day)?.type}</span>: ''}
             </td>
         )
     }

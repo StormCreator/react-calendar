@@ -57,7 +57,7 @@ tbody:not(:first-of-type):before
 
 .team__user{
     text-align: left;
-    padding-left: 15px;
+    padding-left: 20px;
 }
 
 .sum-column{

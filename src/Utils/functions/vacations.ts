@@ -50,3 +50,23 @@ export const vacationSearch = (vacations: Vacation[], userId: number, day: Day):
     });
     return matchVacation;
 }
+
+export const setTotalMonthVacation = (vacations: Vacation[], currentDate: Date): number => {
+    let total: number = 0;
+    vacations.forEach(vacation => {
+        let { startDate, endDate } = vacation;
+        let match: boolean = false;
+        const vacationInterval: Date[] = eachDayOfInterval({start: startDate, end: endDate});
+        vacationInterval.forEach(day => {
+            if(day.getMonth() === currentDate.getMonth() && day.getFullYear() === currentDate.getFullYear() && !isWeekend(day)){
+                match = true;
+                return;
+            }
+        });
+        if(match){
+            total += 1;
+        }
+    });
+
+    return total;
+}
