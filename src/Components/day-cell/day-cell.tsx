@@ -5,7 +5,7 @@ import { vacationSearch } from '../../utils/functions/vacations';
 import { isWithinInterval, isSameDay, eachDayOfInterval } from 'date-fns'
 import './dayCell.css';
 import Radium from 'radium';
-import styled from 'styled-components'
+
 interface DayCellProps{
     day: Day,
     vacations: Vacation[],
