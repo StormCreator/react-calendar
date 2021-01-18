@@ -38,7 +38,7 @@ class TeamTable extends React.Component<TeamProps,TeamState>{
             team: { users, id, name, },
             daysInMonth,
             vacations,
-            currentDate
+            currentDate,
         } = this.props;
         return (<tbody className={retracted?" retracted":'' }>
             <tr key={'tr1'}>

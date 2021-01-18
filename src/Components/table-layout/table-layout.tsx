@@ -9,6 +9,7 @@ import CalendarHead from "../calendar-head";
 import { Day } from '../../utils/models/day';
 import { Team } from '../../utils/models/team';
 import { Store } from '../../utils/models/store';
+import { setTotalMonthVacation } from '../../utils/functions/vacations';
 import { connect } from 'react-redux';
 import {differenceInCalendarDays, getDaysInMonth, isSameDay, startOfMonth} from 'date-fns';
 import Modal from '../modal';
@@ -27,7 +28,7 @@ class TableLayout extends React.Component<any,TableState>{
         currentDate:  new Date(),
         daysInMonth: [],
         modalOpened: false,
-        modalState:'loading'
+        modalState:'loading',
     };
     processModal = (event:any)=>{
         event.preventDefault();
@@ -94,6 +95,7 @@ class TableLayout extends React.Component<any,TableState>{
                         daysInMonth={daysInMonth}
                         monthName = {format(currentDate, 'MMMM')}
                         vacations = {vacations}
+                        currentDate = {currentDate}
                     />
                 </table>
                 <Modal 

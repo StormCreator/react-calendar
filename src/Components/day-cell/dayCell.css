@@ -1,3 +1,7 @@
+.weekend{
+    background-color: #f0f0f0;
+}
+
 .vacation::after{
     content: '';
     position: absolute;
@@ -8,6 +12,7 @@
     height: calc(100%-2px);
     background-color: teal;
     border: 1px solid teal;
+    z-index: 5;
 }
 
 .vacation-day::after{
@@ -37,6 +42,7 @@
     border: 1px solid teal;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
+    z-index: 2;
 }
 
 .vacation-end::after{
@@ -52,7 +58,8 @@
     border: 1px solid teal;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
-}
+    z-index: 2;
+} 
 
 .vacation-type{
     position: absolute;
@@ -63,9 +70,5 @@
     color: orange;
     transform: translateY(50%);
 
-}
-
-.weekend{
-    background-color: #f0f0f0;
 }
 
