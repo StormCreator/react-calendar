@@ -10,9 +10,9 @@
     display: block;
     width: 100%;
     height: calc(100%-2px);
-    background-color: teal;
-    border: 1px solid teal;
     z-index: 4;
+    background-color: var(--color);
+    border: 1px solid var(--color);
 }
 
 .vacation-day::after{
@@ -25,8 +25,8 @@
     width: calc(100% -20px);
     border-radius: 3px;
     height: calc(100% -2px);
-    border: 1px solid teal;
-    background-color: teal;
+    background-color: var(--color);
+    border: 1px solid var(--color);
 }
 
 .vacation-start::after{
@@ -38,8 +38,8 @@
     display: block;
     width: 100%;
     height: calc(100%-2px);
-    background-color: teal;
-    border: 1px solid teal;
+    background-color: var(--color);
+    border: 1px solid var(--color);
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
     z-index: 2;
@@ -54,8 +54,8 @@
     display: block;
     width: 100%;
     height: calc(100%-2px);
-    background-color: teal;
-    border: 1px solid teal;
+    background-color: var(--color);
+    border: 1px solid var(--color);
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
     z-index: 2;
@@ -66,7 +66,8 @@
     top: 5px;
     z-index: 5;
     font-size: 14px;
-    color: orange;
+    color:#fff;
+    transform: translateY(50%);
 }
 
 .odd-vacation{
