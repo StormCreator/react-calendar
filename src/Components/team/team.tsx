@@ -16,8 +16,11 @@ interface TeamProps{
     vacations: Vacation[],
     currentDate: Date
 }
+interface TeamState{
+    retracted:boolean;
+}
 
-class TeamTable extends React.Component<TeamProps,any>{
+class TeamTable extends React.Component<TeamProps,TeamState>{
     
     constructor(props: TeamProps){
         super(props);

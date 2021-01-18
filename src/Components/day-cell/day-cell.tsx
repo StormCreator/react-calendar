@@ -29,19 +29,6 @@ const DayCell = (props: DayCellProps) => {
         border: 1px solid ${props.color};
     }
 `;
-
-    /*const cellStyle:Radium.StyleRules= {
-        '::after':{
-            content: '',
-            position: 'absolute',
-            top: '2px',
-            bottom: '2px',
-            display: 'block',
-            width: '100%',
-            height: 'calc(100%-2px)',
-            backgroundColor:`#${props.color}`,
-            borderColor:`#${props.color}`
-    }};*/
     
     const {vacations, userId, day} = props;
 

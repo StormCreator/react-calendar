@@ -23,14 +23,12 @@ class TableLayout extends React.Component<any,TableState>{
         modalOpened: false,
         modalState:'loading'
     };
-    processModal = (event:any)=>{
+    processModal = (event:React.FormEvent<HTMLFormElement>):void=>{
         event.preventDefault();
         const form = event.target;
-        //console.log(form.startDate.value,form.endDate.value)
-        if(differenceInCalendarDays(new Date(form.endDate.value),new Date(form.startDate.value))<0){
+        if(differenceInCalendarDays(new Date(((form as HTMLFormElement).endDate as HTMLInputElement).value),new Date(((form as HTMLFormElement).startDate as HTMLInputElement).value))<0){
             this.setState({modalState:'error'});
         }
-        //console.log(form.vacType.value);
     }
     componentDidMount(){
         const { currentDate } = this.state;
@@ -102,8 +100,8 @@ class TableLayout extends React.Component<any,TableState>{
                 <Modal 
                     currentDate={isSameDay(this.state.currentDate, new Date)?this.state.currentDate:startOfMonth(this.state.currentDate)} 
                     handleSubmit={this.processModal} close={()=>{this.setState({modalOpened: false , modalState:'loading'})}} 
-                    isOpened={this.state.modalOpened} modalState={this.state.modalState}>
-                </Modal>
+                    isOpened={this.state.modalOpened} modalState={this.state.modalState}/>
+                
 
             </>
         )
