@@ -2,7 +2,6 @@ import { Vacation } from '../models/vacation';
 import { isWithinInterval, eachDayOfInterval, isWeekend, isSameDay } from 'date-fns';
 import { Day } from '../models/day';
 
-
 export const getVacationQuantity = (userId: number, vacations: Vacation[], currentDate: Date): number => {
     let quantity: number = 0;
     vacations.forEach(vacation => {
@@ -50,6 +49,7 @@ export const vacationSearch = (vacations: Vacation[], userId: number, day: Day):
     });
     return matchVacation;
 }
+
 
 export const setTotalMonthVacation = (vacations: Vacation[], currentDate: Date): number => {
     let total: number = 0;

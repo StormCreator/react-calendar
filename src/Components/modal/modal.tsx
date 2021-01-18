@@ -1,10 +1,19 @@
 import { differenceInCalendarDays, format } from 'date-fns';
 import React, { useState } from 'react';
-import './modal.css'
-export default function Modal(props:any){
-    const [startDate,setStartDate] = useState(format(new Date(props.currentDate), 'yyyy-MM-dd'))
-    const [endDate,setEndDate] = useState(format(new Date(props.currentDate), 'yyyy-MM-dd'))
-    const [sumOfDays,setSumOfDays] = useState(0)
+import './modal.css';
+
+interface modalProps  {
+    currentDate:Date;
+    handleSubmit(e:React.FormEvent<HTMLFormElement>):void;
+    close():void;
+    isOpened:boolean;
+    modalState:string;
+}
+
+export default function Modal(props:modalProps){
+    const [startDate,setStartDate] = useState(format(new Date(props.currentDate), 'yyyy-MM-dd'));
+    const [endDate,setEndDate] = useState(format(new Date(props.currentDate), 'yyyy-MM-dd'));
+    const [sumOfDays,setSumOfDays] = useState(0);
     if(props.isOpened){
         if(props.modalState==='normal'){
             return(

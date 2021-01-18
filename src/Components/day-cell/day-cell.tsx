@@ -1,18 +1,36 @@
+
 import { Day } from '../../utils/models/day';
 import { Vacation } from '../../utils/models/vacation';
 import { vacationSearch } from '../../utils/functions/vacations';
 import { isWithinInterval, isSameDay, eachDayOfInterval } from 'date-fns'
 import './dayCell.css';
-
+import Radium from 'radium';
+import styled from 'styled-components'
 interface DayCellProps{
     day: Day,
     vacations: Vacation[],
-    userId: number
+    userId: number,
+    color:string
+}
+interface styles{
+    [key:string]:string
 }
 
-
 const DayCell = (props: DayCellProps) => {
-
+    const vacation = styled.td`
+    &:after{
+        content: '';
+        position: absolute;
+        top: 2px;
+        bottom: 2px;
+        display: block;
+        width: 100%;
+        height: calc(100%-2px);
+        background-color: ${props.color};
+        border: 1px solid ${props.color};
+    }
+`;
+    
     const {vacations, userId, day} = props;
 
     const isVacationCenter = ():boolean => {
@@ -77,9 +95,10 @@ const DayCell = (props: DayCellProps) => {
     }
 
     if(vacationMatch()){
+        const cell = vacationColor(props.color);
         return(
-            <td key={props.day.date.toString()} className={`daycell ${props.day.isWeekend?'weekend':''} ${getVacationDayType()}`}>
-                {isVacationCenter()? <span className={`vacation-type ${isOddVacation()?'': 'odd-vacation'}`}>{vacationSearch(vacations, userId, day)?.type}</span>: ''}
+            <td key={props.day.date.toString()} style={{'--color':'#'+props.color}as styles} data-color={'#'+props.color} className={`daycell ${props.day.isWeekend?'weekend':''} ${getVacationDayType()}`}>
+                {isVacationCenter()? <span className={`vacation-type ${isOddVacation()?'': 'odd-vacation'}`}>{vacationSearch(vacations, userId, day)?.type}</span>: ''}}
             </td>
         )
     }
@@ -95,4 +114,4 @@ const DayCell = (props: DayCellProps) => {
 
 }
 
-export default DayCell;
+export default Radium(DayCell);
