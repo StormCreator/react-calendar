@@ -3,7 +3,7 @@ const initialState = {
     vacationList: [
         {
             startDate: new Date(2021, 0, 15),
-            endDate: new Date(2021, 0, 16),
+            endDate: new Date(2021, 0, 17),
             type: 'paid',
             userId: 1
         },
