@@ -1,4 +1,4 @@
-import { Team } from '../../utils/team';
+import { Team } from '../../utils/models/team';
 
 const initialState = {
     teams: [

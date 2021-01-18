@@ -1,9 +1,9 @@
 import React from 'react';
 import './calendarFooter.css'
-import { Vacation } from '../../utils/vacation';
+import { Vacation } from '../../utils/models/vacation';
 import { getVacationsOnColumn } from '../../utils/functions/vacations';
 import { isWeekend } from 'date-fns';
-import { Day } from '../../utils/day';
+import { Day } from '../../utils/models/day';
 
 
 

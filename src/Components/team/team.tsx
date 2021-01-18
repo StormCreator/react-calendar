@@ -1,11 +1,10 @@
 import React from "react";
-import { Day } from "../../utils/day";
-import { Vacation } from "../../utils/vacation";
-import { Team } from '../../utils/team';
+import { Day } from "../../utils/models/day";
+import { Vacation } from "../../utils/models/vacation";
+import { Team } from '../../utils/models/team';
 import hideArrow from '../../assets/img/hide-arrow.svg';
 import teamPeople from '../../assets/img/team-people.svg';
 import './teamTable.css';
-import { User } from '../../utils/user';
 import { getVacationQuantity } from '../../utils/functions/vacations';
 import DayCell  from '../day-cell';
 
@@ -17,7 +16,11 @@ interface TeamProps{
     currentDate: Date
 }
 
-class TeamTable extends React.Component<TeamProps,any>{
+interface TeamState{
+    retracted: boolean;
+}
+
+class TeamTable extends React.Component<TeamProps,TeamState>{
     
     constructor(props: TeamProps){
         super(props);
@@ -25,10 +28,6 @@ class TeamTable extends React.Component<TeamProps,any>{
             retracted: false,
         }
     }
-    componentDidMount(){
-        const { team: { users}, vacations } = this.props;
-    }
-
     private switchVisibility= (): void =>{
         this.setState({retracted:!this.state.retracted});
     }
