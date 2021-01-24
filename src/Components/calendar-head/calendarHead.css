@@ -26,6 +26,17 @@
     background-color: #f3f3f3;
 }
 
+.calendar__day button{
+    background-color: lightgreen;
+    padding: 10px 20px;
+    border: 1px solid lightgreen;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+}
 
+.calendar__day button:focus{
+    outline: none;
+}
 
 

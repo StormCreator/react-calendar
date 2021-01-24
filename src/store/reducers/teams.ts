@@ -5,6 +5,7 @@ const initialState = {
         {
             id:1,
             name:'Frontend',
+            color:'#efadfd',
             users:[
                 {
                     id:1,
@@ -29,6 +30,7 @@ const initialState = {
         {
             id:2,
             name:'Backend',
+            color:'#000',
             users:[
                 {
                     id:4,
@@ -47,6 +49,7 @@ const initialState = {
         {
             id:3,
             name:'Designers',
+            color:'#adf',
             users:[
                 {
                     id:6,

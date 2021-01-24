@@ -32,8 +32,8 @@ class TeamTable extends React.Component<TeamProps,TeamState>{
     }
 
     render(){
-        const randomColor = Math.floor(Math.random()*16777215).toString(16);
-        const blStyle ={borderLeft: `3px solid #${randomColor}`};
+        const teamColor = this.props.team.color;
+        const blStyle ={borderLeft: `3px solid ${teamColor}`};
         
         const { retracted } = this.state;
         const {
@@ -83,7 +83,7 @@ class TeamTable extends React.Component<TeamProps,TeamState>{
                                         vacations={vacations}
                                         userId={user.id}
                                         key={day.date.toString()}
-                                        color={randomColor}
+                                        color={teamColor}
                                     />
                                 )
                             })
