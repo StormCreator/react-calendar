@@ -17,20 +17,6 @@ interface styles{
 }
 
 const DayCell = (props: DayCellProps) => {
-    const vacation = styled.td`
-    &:after{
-        content: '';
-        position: absolute;
-        top: 2px;
-        bottom: 2px;
-        display: block;
-        width: 100%;
-        height: calc(100%-2px);
-        background-color: ${props.color};
-        border: 1px solid ${props.color};
-    }
-`;
-    
     const {vacations, userId, day} = props;
 
     const isVacationCenter = ():boolean => {
@@ -97,8 +83,7 @@ const DayCell = (props: DayCellProps) => {
     if(vacationMatch()){
         return(
             <td key={props.day.date.toString()} style={{'--color':'#'+props.color}as styles} data-color={'#'+props.color} className={`daycell ${props.day.isWeekend?'weekend':''} ${getVacationDayType()}`}>
-                {/* {isVacationCenter()? <span className={`vacation-type ${isOddVacation()?'': 'odd-vacation'}`}>{vacationSearch(vacations, userId, day)?.type}</span>: ''}} */}
-                {isVacationCenter()? <span className={`vacation-type ${isOddVacation()?'':'odd-vacation'}`}>{vacationSearch(vacations, userId, day)?.type}</span>: ''}
+                {isVacationCenter()? <span className={`vacation-type ${isOddVacation()?'': 'odd-vacation'}`}>{vacationSearch(vacations, userId, day)?.type}</span>: ''}
             </td>
         )
     }
